@@ -3,60 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leilão Invertido — Timer</title>
+  <title>Leilão Invertido</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="overlay">
-    <div class="hud" id="hud">
-      <div class="top">
+    <div class="top">
+      <div class="title-wrap" id="titleWrap">
         <div class="title" id="title">LEILÃO INVERTIDO</div>
-        <div class="subtitle" id="subtitle">Termina quando chegar a zero</div>
-      </div>
-
-      <div class="mid">
-        <div class="ring" aria-hidden="true">
-          <svg viewBox="0 0 240 240">
-            <defs>
-              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="var(--a)"/>
-                <stop offset="50%" stop-color="var(--b)"/>
-                <stop offset="100%" stop-color="var(--c)"/>
-              </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3.5" result="blur"/>
-                <feMerge>
-                  <feMergeNode in="blur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-
-            <circle class="track" cx="120" cy="120" r="92"></circle>
-            <circle class="progress" id="progress" cx="120" cy="120" r="92"></circle>
-          </svg>
-        </div>
-
-        <div class="time">
-          <div class="label">TEMPO</div>
-          <div class="digits" id="digits">60:00</div>
-          <div class="micro" id="micro">Começa assim que abres o link</div>
-        </div>
-      </div>
-
-      <div class="bottom">
-        <div class="pill" id="statusPill">
-          <span class="dot"></span>
-          <span id="statusText">AO VIVO</span>
-        </div>
-
-        <div class="cta" id="cta">
-          Faz a tua oferta antes que acabe ⏳
-        </div>
+        <div class="subtitle" id="subtitle">Faz a tua oferta agora</div>
       </div>
     </div>
 
-    <div class="flash" id="flash" aria-hidden="true"></div>
+    <div class="spacer"></div>
+
+    <div class="center">
+      <div class="timer-card" id="timerCard">
+        <div class="timer" id="timer">60:00</div>
+
+        <div class="meta-row">
+          <div class="pill" id="statePill">
+            <span class="dot" id="stateDot"></span>
+            <span class="pill-text" id="stateText">A DECORRER</span>
+          </div>
+
+          <div class="tiny" id="hint">
+            Escreve no chat: <b>1</b>, <b>2</b>, <b>3</b>... (ajusta isto ao teu fluxo)
+          </div>
+        </div>
+
+        <div class="bar">
+          <div class="bar-fill" id="barFill"></div>
+        </div>
+
+        <div class="foot" id="foot">
+          <span id="anchorInfo">Ancorado por hora de início</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
