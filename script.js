@@ -1,112 +1,72 @@
 const params = new URLSearchParams(location.search);
 
-function safeText(v, fallback){
-  const s = (v ?? "").toString().trim();
-  return s ? s : fallback;
-}
+const theme = (params.get("theme") || "dark").toLowerCase();
+document.documentElement.dataset.theme = theme;
 
-function parseIntSafe(v, fallback){
-  const n = parseInt(v, 10);
-  return Number.isFinite(n) ? n : fallback;
-}
-
-function parseIsoDate(v){
-  if (!v) return null;
-  const d = new Date(v);
-  return isNaN(d.getTime()) ? null : d;
-}
-
-const title = safeText(params.get("title"), "LEILÃO INVERTIDO");
-const subtitle = safeText(params.get("subtitle"), "Faz a tua oferta agora");
-
-const durationMin = parseIntSafe(params.get("duration"), 60);
-const urgentMin = parseIntSafe(params.get("urgent"), 10);
-const dangerMin = parseIntSafe(params.get("danger"), 2);
-
-const accent = params.get("accent");
-const text = params.get("text");
-
-if (accent) document.documentElement.style.setProperty("--accent", accent);
-if (text) document.documentElement.style.setProperty("--text", text);
+const minutes = Math.max(1, parseInt(params.get("minutes") || "60", 10));
+const title = params.get("title") || "LEILÃO INVERTIDO";
+const subtitle = params.get("subtitle") || "Tempo a acabar…";
 
 document.getElementById("title").textContent = title;
 document.getElementById("subtitle").textContent = subtitle;
 
-const elTimer = document.getElementById("timer");
-const elFill = document.getElementById("barFill");
-const elStateText = document.getElementById("stateText");
-const elTimerCard = document.getElementById("timerCard");
-const elAnchorInfo = document.getElementById("anchorInfo");
+const elTime = document.getElementById("time");
+const elFill = document.getElementById("fill");
+const elStatus = document.getElementById("statusPill");
+const btnRestart = document.getElementById("btnRestart");
+const btnPause = document.getElementById("btnPause");
 
-const totalSeconds = Math.max(0, durationMin) * 60;
+let total = minutes * 60;
+let remaining = total;
+let running = true;
+let lastTick = performance.now();
 
-const start = parseIsoDate(params.get("start"));
-const end = parseIsoDate(params.get("end"));
+function pad(n){ return String(n).padStart(2,"0"); }
 
-let anchorStart = null;
-let anchorEnd = null;
+function render(){
+  const m = Math.floor(remaining / 60);
+  const s = remaining % 60;
+  elTime.textContent = `${pad(m)}:${pad(s)}`;
 
-// Regras:
-// - Se existir "end", conta até end (end manda).
-// - Senão, se existir "start", conta desde start + duration.
-// - Senão, começa quando abre (start = now).
-if (end){
-  anchorEnd = end;
-  anchorStart = new Date(end.getTime() - totalSeconds * 1000);
-  elAnchorInfo.textContent = "Ancorado por hora de fim";
-} else if (start){
-  anchorStart = start;
-  anchorEnd = new Date(start.getTime() + totalSeconds * 1000);
-  elAnchorInfo.textContent = "Ancorado por hora de início";
-} else {
-  anchorStart = new Date();
-  anchorEnd = new Date(anchorStart.getTime() + totalSeconds * 1000);
-  elAnchorInfo.textContent = "Início ao abrir a página";
-}
+  const pct = total > 0 ? (remaining / total) : 0;
+  elFill.style.width = `${Math.max(0, Math.min(1, pct)) * 100}%`;
 
-function pad2(n){ return String(n).padStart(2, "0"); }
-
-function formatMMSS(sec){
-  sec = Math.max(0, Math.floor(sec));
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
-  return `${pad2(m)}:${pad2(s)}`;
-}
-
-function setState(state){
-  elTimerCard.classList.toggle("is-urgent", state === "urgent");
-  elTimerCard.classList.toggle("is-danger", state === "danger");
-
-  if (state === "danger") elStateText.textContent = "ÚLTIMOS MINUTOS";
-  else if (state === "urgent") elStateText.textContent = "A ACABAR";
-  else elStateText.textContent = "A DECORRER";
-}
-
-function tick(){
-  const now = new Date();
-  const remaining = (anchorEnd.getTime() - now.getTime()) / 1000;
-
-  elTimer.textContent = formatMMSS(remaining);
-
-  const progress = 1 - (remaining / (totalSeconds || 1));
-  const pct = Math.max(0, Math.min(1, progress)) * 100;
-  elFill.style.width = `${pct}%`;
-
-  // estados visuais
-  const remMin = remaining / 60;
   if (remaining <= 0){
-    setState("danger");
-    elStateText.textContent = "TERMINOU";
-    elFill.style.width = "100%";
-  } else if (remMin <= dangerMin){
-    setState("danger");
-  } else if (remMin <= urgentMin){
-    setState("urgent");
+    elStatus.textContent = "TERMINOU";
+    btnPause.textContent = "Pausar";
   } else {
-    setState("normal");
+    elStatus.textContent = running ? "A correr" : "Pausado";
+    btnPause.textContent = running ? "Pausar" : "Retomar";
   }
 }
 
-// mais fluido e “sem drift”
-tick();
-setInterval(tick, 250);
+function loop(now){
+  const dt = (now - lastTick) / 1000;
+  lastTick = now;
+
+  if (running && remaining > 0){
+    remaining -= dt;
+    if (remaining < 0) remaining = 0;
+  }
+
+  // render mais “vivo” mas leve
+  render();
+  requestAnimationFrame(loop);
+}
+
+btnRestart.addEventListener("click", () => {
+  remaining = total;
+  running = true;
+  lastTick = performance.now();
+  render();
+});
+
+btnPause.addEventListener("click", () => {
+  if (remaining <= 0) return;
+  running = !running;
+  lastTick = performance.now();
+  render();
+});
+
+render();
+requestAnimationFrame(loop);
