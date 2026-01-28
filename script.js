@@ -1,5 +1,8 @@
 let totalSeconds = 60 * 60; // 60 minutos
 const timerEl = document.getElementById("auctionTimer");
+const progressFill = document.getElementById("progressFill");
+
+const totalInitial = totalSeconds;
 
 function updateAuctionTimer() {
   const m = Math.floor(totalSeconds / 60);
@@ -7,24 +10,28 @@ function updateAuctionTimer() {
 
   timerEl.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 
-  // MUDANÇA DE CORES PROGRESSIVA
+  // PROGRESS BAR
+  const pct = (totalSeconds / totalInitial) * 100;
+  progressFill.style.width = pct + "%";
+
+  // CORES PROGRESSIVAS
   if (totalSeconds > 45 * 60) {
-    timerEl.style.color = "#008000"; // verde
+    timerEl.style.color = "#15803d"; // verde
   } else if (totalSeconds > 30 * 60) {
     timerEl.style.color = "#b59a00"; // amarelo
   } else if (totalSeconds > 15 * 60) {
-    timerEl.style.color = "#ff7b00"; // laranja
+    timerEl.style.color = "#ea580c"; // laranja
   } else if (totalSeconds > 60) {
-    timerEl.style.color = "#d40000"; // vermelho
+    timerEl.style.color = "#b91c1c"; // vermelho
   } else {
-    timerEl.style.color = "#ff0000"; // vermelho forte
-    timerEl.classList.add("blink"); // últimos 60s piscam
+    timerEl.style.color = "#dc2626"; // vermelho forte
+    timerEl.classList.add("blink");
   }
 
   // TERMINOU
   if (totalSeconds <= 0) {
     timerEl.textContent = "TERMINADO";
-    timerEl.style.color = "#ff0000";
+    timerEl.style.color = "#dc2626";
     timerEl.classList.add("blink");
     clearInterval(countdownInterval);
   }
