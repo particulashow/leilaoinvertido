@@ -2,7 +2,7 @@
   --glass: rgba(0,0,0,.65);
   --glass2: rgba(0,0,0,.45);
 
-  --stroke: rgba(255,0,0,.35); /* contorno vermelho */
+  --stroke: rgba(255,0,0,.35);
   --text: rgba(255,255,255,.96);
   --muted: rgba(255,255,255,.72);
 
@@ -14,7 +14,7 @@ html, body{
   margin:0;
   padding:0;
   width:800px;
-  height:900px; /* altura reduzida */
+  height:820px; /* altura ainda mais reduzida */
   background: transparent;
   font-family: "Rubik", system-ui, sans-serif;
   overflow:hidden;
@@ -44,7 +44,6 @@ html, body{
   background: linear-gradient(180deg, var(--glass), var(--glass2));
   padding-bottom: 20px;
 
-  /* glow vermelho no glass */
   box-shadow:
     0 0 25px rgba(255,0,0,.35),
     0 0 60px rgba(255,0,0,.25);
@@ -52,22 +51,22 @@ html, body{
 
 /* TÍTULO */
 .title-wrap{
-  padding: 28px 20px 10px;
+  padding: 24px 20px 6px;
   text-align:center;
   width: 100%;
 }
 
 .title{
-  font-size: 58px;          /* maior */
+  font-size: 52px;
   font-weight: 900;
-  letter-spacing: 3px;      /* espaçamento */
+  letter-spacing: 3px;
   line-height: 1.05;
   color: var(--text);
 }
 
 .subtitle{
-  margin-top: 18px;
-  font-size: 26px;          /* maior */
+  margin-top: 14px;
+  font-size: 22px;
   color: var(--muted);
   font-weight: 700;
   line-height: 1.4;
@@ -75,7 +74,7 @@ html, body{
 }
 
 .link{
-  font-size: 32px;          /* maior */
+  font-size: 34px;       /* link maior */
   font-weight: 900;
   color: var(--accent-red);
   letter-spacing: 2px;
@@ -84,16 +83,16 @@ html, body{
 
 /* TIMER */
 .timer-card{
-  padding: 24px 20px 32px;
+  padding: 20px 20px 26px;
   display:flex;
   flex-direction:column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .big{
-  font-size: 180px;         /* MUITO maior */
+  font-size: 150px;      /* counter reduzido ligeiramente */
   font-weight: 900;
-  letter-spacing: 4px;      /* espaçamento */
+  letter-spacing: 4px;
   line-height: 1;
   text-align:center;
   color: var(--accent-red);
@@ -101,9 +100,4 @@ html, body{
 
 /* BLINK */
 .blink{
-  animation: blinkAnim 0.5s steps(2, start) infinite;
-}
-
-@keyframes blinkAnim{
-  50% { opacity: 0; }
-}
+  animation
