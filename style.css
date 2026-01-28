@@ -1,35 +1,61 @@
+/* Overlay vertical fixa */
+body {
+  margin: 0;
+  width: 600px;
+  height: 1080px;
+  background: transparent; /* OBS overlay */
+  font-family: "Inter", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container principal */
 #auctionContainer {
+  width: 100%;
+  height: 100%;
   text-align: center;
-  margin-top: 40px;
-  color: white;
-  font-family: system-ui, sans-serif;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  color: #000; /* texto escuro para fundo branco */
 }
 
+/* Título */
 #auctionTitle {
-  font-size: 4vw;
+  font-size: 48px;
   font-weight: 900;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-  color: #ffffff;
-  text-shadow: 0 0 12px rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #111;
+  text-shadow: 0 0 6px rgba(0,0,0,0.15);
 }
 
+/* Subtítulo */
 #auctionSubtitle {
-  font-size: 1.6vw;
-  font-weight: 500;
-  opacity: 0.9;
-  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  line-height: 1.4;
+  color: #333;
 }
 
+#auctionLink {
+  font-size: 26px;
+  font-weight: 800;
+  color: #d40000;
+}
+
+/* Countdown */
 #auctionTimer {
-  font-size: 6vw;
+  font-size: 140px;
   font-weight: 900;
-  color: #00ff88;
-  text-shadow: 0 0 12px rgba(0,255,136,0.6);
+  margin-top: 40px;
+  color: #008000;
+  text-shadow: 0 0 12px rgba(0,0,0,0.25);
   transition: color 0.4s ease, text-shadow 0.4s ease;
 }
 
-/* Piscar nos últimos 10 segundos */
+/* Piscar nos últimos 60 segundos */
 .blink {
   animation: blinkAnim 0.5s steps(2, start) infinite;
 }
