@@ -1,47 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Leilão Invertido</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="overlay">
-    <div class="top">
-      <div class="title-wrap" id="titleWrap">
+  <main class="overlay">
+    <section class="wrap">
+      <header class="title-wrap card">
         <div class="title" id="title">LEILÃO INVERTIDO</div>
-        <div class="subtitle" id="subtitle">Faz a tua oferta agora</div>
-      </div>
-    </div>
+        <div class="subtitle" id="subtitle">Tempo a acabar…</div>
+      </header>
 
-    <div class="spacer"></div>
+      <section class="timer-card card" aria-live="polite">
+        <div class="big" id="time">60:00</div>
 
-    <div class="center">
-      <div class="timer-card" id="timerCard">
-        <div class="timer" id="timer">60:00</div>
-
-        <div class="meta-row">
-          <div class="pill" id="statePill">
-            <span class="dot" id="stateDot"></span>
-            <span class="pill-text" id="stateText">A DECORRER</span>
-          </div>
-
-          <div class="tiny" id="hint">
-            Escreve no chat: <b>1</b>, <b>2</b>, <b>3</b>... (ajusta isto ao teu fluxo)
-          </div>
+        <div class="row">
+          <div class="pill" id="statusPill">A correr</div>
+          <button class="btn" id="btnRestart" type="button">Reiniciar</button>
+          <button class="btn ghost" id="btnPause" type="button">Pausar</button>
         </div>
 
         <div class="bar">
-          <div class="bar-fill" id="barFill"></div>
+          <div class="fill" id="fill"></div>
         </div>
 
-        <div class="foot" id="foot">
-          <span id="anchorInfo">Ancorado por hora de início</span>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="foot" id="foot">Boa sorte 🍀</div>
+      </section>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
