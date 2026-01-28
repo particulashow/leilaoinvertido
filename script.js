@@ -14,26 +14,25 @@ function updateAuctionTimer() {
   const pct = (totalSeconds / totalInitial) * 100;
   progressFill.style.width = pct + "%";
 
-  // CORES PROGRESSIVAS (TIMER + BARRA)
+  // CORES PROGRESSIVAS
   let color = "#00ff88"; // verde
 
   if (totalSeconds > 45 * 60) {
-    color = "#00ff88"; // verde
+    color = "#00ff88";
   } else if (totalSeconds > 30 * 60) {
-    color = "#ccff00"; // amarelo
+    color = "#ccff00";
   } else if (totalSeconds > 15 * 60) {
-    color = "#ff8800"; // laranja
+    color = "#ff8800";
   } else if (totalSeconds > 60) {
-    color = "#ff3300"; // vermelho
+    color = "#ff3300";
   } else {
-    color = "#ff0000"; // vermelho forte
+    color = "#ff0000";
     timerEl.classList.add("blink");
   }
 
   timerEl.style.color = color;
   progressFill.style.background = color;
 
-  // TERMINOU
   if (totalSeconds <= 0) {
     timerEl.textContent = "TERMINADO";
     timerEl.style.color = "#ff0000";
