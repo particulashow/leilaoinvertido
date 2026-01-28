@@ -14,7 +14,7 @@ html, body{
   margin:0;
   padding:0;
   width:800px;
-  height:820px; /* altura ainda mais reduzida */
+  height:720px; /* altura ainda mais reduzida */
   background: transparent;
   font-family: "Rubik", system-ui, sans-serif;
   overflow:hidden;
@@ -57,16 +57,16 @@ html, body{
 }
 
 .title{
-  font-size: 52px;
+  font-size: 62px;
   font-weight: 900;
-  letter-spacing: 3px;
+  letter-spacing: 5px;
   line-height: 1.05;
   color: var(--text);
 }
 
 .subtitle{
   margin-top: 14px;
-  font-size: 22px;
+  font-size: 32px;
   color: var(--muted);
   font-weight: 700;
   line-height: 1.4;
@@ -74,7 +74,7 @@ html, body{
 }
 
 .link{
-  font-size: 34px;       /* link maior */
+  font-size: 54px;       /* link maior */
   font-weight: 900;
   color: var(--accent-red);
   letter-spacing: 2px;
@@ -83,14 +83,14 @@ html, body{
 
 /* TIMER */
 .timer-card{
-  padding: 20px 20px 26px;
+  padding: 20px 20px 20px;
   display:flex;
   flex-direction:column;
-  gap: 20px;
+  gap: 15px;
 }
 
 .big{
-  font-size: 150px;      /* counter reduzido ligeiramente */
+  font-size: 130px;      /* counter reduzido ligeiramente */
   font-weight: 900;
   letter-spacing: 4px;
   line-height: 1;
