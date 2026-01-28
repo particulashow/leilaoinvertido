@@ -6,16 +6,41 @@
   <title>Leilão Invertido</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div id="auctionContainer">
-    <div id="auctionTitle">LEILÃO INVERTIDO</div>
-    <div id="auctionSubtitle">
-      FAZ AGORA A TUA LICITAÇÃO NO LINK:<br>
-      <span id="auctionLink">https://exemplo.com</span>
-    </div>
+  <div class="overlay">
+    <div class="wrap">
 
-    <div id="auctionTimer">60:00</div>
+      <!-- CARD PRINCIPAL -->
+      <div class="card">
+
+        <div class="title-wrap">
+          <div class="title">LEILÃO INVERTIDO</div>
+          <div class="subtitle">
+            FAZ AGORA A TUA LICITAÇÃO NO LINK:<br>
+            <span class="link">https://exemplo.com</span>
+          </div>
+        </div>
+
+        <div class="timer-card">
+          <div id="auctionTimer" class="big">60:00</div>
+
+          <div class="row">
+            <div class="pill">60 MINUTOS</div>
+            <div class="pill">VALOR A DESCER</div>
+            <div class="pill">LICITAÇÃO EM TEMPO REAL</div>
+          </div>
+
+          <div class="bar">
+            <div id="progressFill" class="fill"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
   </div>
 
   <script src="script.js"></script>
