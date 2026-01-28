@@ -1,3 +1,12 @@
+// LINK VIA URL
+const params = new URLSearchParams(window.location.search);
+const linkParam = params.get("link");
+
+if (linkParam) {
+  document.getElementById("auctionLink").textContent = linkParam;
+}
+
+// COUNTDOWN
 let totalSeconds = 60 * 60; // 60 minutos
 const timerEl = document.getElementById("auctionTimer");
 
@@ -8,7 +17,7 @@ function updateAuctionTimer() {
   timerEl.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 
   // CORES PROGRESSIVAS
-  let color = "#00ff88"; // verde
+  let color = "#00ff88";
 
   if (totalSeconds > 45 * 60) {
     color = "#00ff88";
