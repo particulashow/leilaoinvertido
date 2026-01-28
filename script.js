@@ -9,13 +9,13 @@ function updateAuctionTimer() {
 
   // MUDANÇA DE CORES PROGRESSIVA
   if (totalSeconds > 45 * 60) {
-    timerEl.style.color = "#00ff88"; // verde
+    timerEl.style.color = "#008000"; // verde
   } else if (totalSeconds > 30 * 60) {
-    timerEl.style.color = "#ccff00"; // amarelo
+    timerEl.style.color = "#b59a00"; // amarelo
   } else if (totalSeconds > 15 * 60) {
-    timerEl.style.color = "#ff8800"; // laranja
+    timerEl.style.color = "#ff7b00"; // laranja
   } else if (totalSeconds > 60) {
-    timerEl.style.color = "#ff3300"; // vermelho
+    timerEl.style.color = "#d40000"; // vermelho
   } else {
     timerEl.style.color = "#ff0000"; // vermelho forte
     timerEl.classList.add("blink"); // últimos 60s piscam
