@@ -28,7 +28,6 @@ function updateAuctionTimer() {
     timerEl.classList.add("blink");
   }
 
-  // TERMINOU
   if (totalSeconds <= 0) {
     timerEl.textContent = "TERMINADO";
     timerEl.style.color = "#dc2626";
